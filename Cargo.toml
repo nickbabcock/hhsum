@@ -1,0 +1,11 @@
+[package]
+name = "hhsum"
+version = "0.1.0"
+authors = ["Nick Babcock <nbabcock19@hotmail.com>"]
+
+[dependencies]
+structopt = "0.2"
+memmap = "0.7"
+rayon = "1.0"
+highway = "0.1"
+failure = "0.1.2"
