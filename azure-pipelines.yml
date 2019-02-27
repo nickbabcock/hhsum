@@ -8,4 +8,4 @@ steps:
   - script: rustup component add clippy
     displayName: Install Clippy
   - script: cargo clippy --all
-    display: Run clippy
+    displayName: Run clippy
