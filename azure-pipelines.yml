@@ -1,8 +1,23 @@
-pool:
-  vmImage: 'ubuntu-16.04'
-container: 'rust:latest'
-steps:
-  - script: rustup component add clippy
-    displayName: Install Clippy
-  - script: cargo clippy --all
-    displayName: Run clippy
+jobs:
+  - job: 'Clippy'
+    pool:
+      vmImage: 'ubuntu-16.04'
+    container: 'rust:latest'
+    steps:
+      - script: rustup component add clippy
+        displayName: Install Clippy
+      - script: cargo clippy --all
+        displayName: Run clippy
+
+  - job: 'Test'
+    pool:
+      vmImage: 'ubuntu-16.04'
+    steps:
+      - script: |
+          curl https://sh.rustup.rs -sSf | sh -s -- -y
+          echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin"
+        displayName: Install rust
+      - script: cargo build --all
+        displayName: Cargo build
+      - script: cargo test --all
+        displayName: Cargo test
