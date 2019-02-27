@@ -1,13 +1,14 @@
 jobs:
-  - job: 'Clippy'
+  - job: 'Rustfmt'
     pool:
       vmImage: 'ubuntu-16.04'
     container: 'rust:latest'
+    condition: eq(variables['Build.Reason'], 'PullRequest')
     steps:
-      - script: rustup component add clippy
-        displayName: Install Clippy
-      - script: cargo clippy --all
-        displayName: Run clippy
+      - script: rustup component add rustfmt
+        displayName: Install Rustfmt
+      - script: cargo fmt --all -- --check
+        displayName: Run Rustfmt
 
   - job: 'Test'
     pool:
