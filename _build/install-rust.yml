@@ -1,5 +1,6 @@
-variables:
+parameters:
   rustup_toolchain: coalesce(variables['rustup_toolchain'], 'stable')
+
 steps:
  - ${{ if eq( variables['Agent.OS'], 'Windows_NT' ) }}:
    - script: |
