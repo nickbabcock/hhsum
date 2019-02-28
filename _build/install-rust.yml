@@ -5,7 +5,7 @@ steps:
  - bash: |
      TOOLCHAIN="${{parameters['rustup_toolchain']}}"
      echo 1 $TOOLCHAIN
-     TOOLCHAIN="${TOOLCHAIN:-RUSTUP_TOOLCHAIN}"
+     TOOLCHAIN="${TOOLCHAIN:-$RUSTUP_TOOLCHAIN}"
      echo 2 $TOOLCHAIN
      TOOLCHAIN="${TOOLCHAIN:-stable}"
      echo 3 $TOOLCHAIN
