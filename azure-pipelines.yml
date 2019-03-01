@@ -14,8 +14,8 @@ strategy:
 pool:
   vmImage: coalesce($(imageName), 'ubuntu-16.04')
 steps:
-  - displayName: env
-    bash: env
+  - bash: env
+    displayName: env
   - template: '_build/install-rust.yml'
   - script: cargo build --all
     displayName: Cargo build
