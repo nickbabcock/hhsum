@@ -1,23 +1,14 @@
 strategy:
   matrix:
-    windows-stable:
-      imageName: 'vs2017-win2016'
-    mac-stable:
+    linux:
+      imageName: 'ubuntu-16.04'
+    mac:
       imageName: 'macos-10.13'
-    linux-stable:
-      rustup_toolchain: stable
-    linux-beta:
-      rustup_toolchain: beta
-    linux-nightly:
-      rustup_toolchain: nightly
-
+    windows:
+      imageName: 'vs2017-win2016'
 pool:
-  vmImage: coalesce($(imageName), 'ubuntu-16.04')
+  vmImage: $(imageName)
+
 steps:
   - bash: env
-    displayName: env
-  - template: '_build/install-rust.yml'
-  - script: cargo build --all
-    displayName: Cargo build
-  - script: cargo test --all
-    displayName: Cargo test
+    displayName: env 
