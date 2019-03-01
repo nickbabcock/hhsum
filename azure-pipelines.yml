@@ -4,7 +4,7 @@ strategy:
       imageName: 'vs2017-win2016'
     mac-stable:
       imageName: 'macos-10.13'
-    linux-stable:
+    linux-stable: ~
     linux-beta:
       rustup_toolchain: beta
     linux-nightly:
