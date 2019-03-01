@@ -1,11 +1,11 @@
 parameters:
-  rustup_toolchain: 'stable'
+  rustup_toolchain: ''
 
 steps:
  - bash: |
-     env
      TOOLCHAIN="${{parameters['rustup_toolchain']}}"
      TOOLCHAIN="${TOOLCHAIN:-$RUSTUP_TOOLCHAIN}"
+     TOOLCHAIN="${TOOLCHAIN:-stable}"
      echo "##vso[task.setvariable variable=TOOLCHAIN;]$TOOLCHAIN"
    displayName: Set rust toolchain
  - ${{ if eq( variables['Agent.OS'], 'Windows_NT' ) }}:
@@ -16,6 +16,7 @@ steps:
      displayName: Windows install rust
  - ${{ if ne( variables['Agent.OS'], 'Windows_NT' ) }}:
    - script: |
+       env
        curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain $TOOLCHAIN
        echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin"
      displayName: Install rust
