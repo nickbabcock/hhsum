@@ -1,3 +1,9 @@
+resources:
+  repositories:
+    - repository: templates
+      type: github
+      name: crate-ci/resources
+
 strategy:
   matrix:
     windows-stable:
@@ -19,7 +25,9 @@ strategy:
 pool:
   vmImage: $(imageName)
 steps:
-  - template: '_build/install-rust.yml'
+  - template: '_az-pipeline/unstable/rustup.yml'
+    inputs:
+      rustup_toolchain: $(rustup.toolchain)
   - script: cargo build --all
     displayName: Cargo build
   - script: cargo test --all
