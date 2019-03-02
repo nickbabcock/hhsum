@@ -14,17 +14,14 @@ strategy:
       imageName: 'macos-10.13'
       rustup.toolchain: stable
     linux-stable:
-      imageName: 'ubuntu-16.04'
       rustup.toolchain: stable
     linux-beta:
-      imageName: 'ubuntu-16.04'
       rustup.toolchain: beta
     linux-nightly:
-      imageName: 'ubuntu-16.04'
       rustup.toolchain: nightly
 
 pool:
-  vmImage: $(imageName)
+  vmImage: coalesce($(imageName), 'ubuntu-16.04')
 steps:
   - template: az-pipeline/unstable/rustup.yml@templates
     parameters:
