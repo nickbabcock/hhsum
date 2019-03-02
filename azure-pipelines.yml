@@ -27,7 +27,7 @@ pool:
   vmImage: $(imageName)
 steps:
   - template: '_az-pipeline/unstable/rustup.yml'
-    inputs:
+    parameters:
       rustup_toolchain: $(rustup.toolchain)
   - script: cargo build --all
     displayName: Cargo build
