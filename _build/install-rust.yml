@@ -16,7 +16,7 @@ steps:
      displayName: Windows install rust
  - ${{ if ne( variables['Agent.OS'], 'Windows_NT' ) }}:
    - script: |
-       echo "AGENT.OS" ${{ if ne( variables['Agent.OS'], 'Windows_NT' ) }}
+       echo "AGENT.OS" "${{ variables['Agent.OS'] }}" "END"
        curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain $TOOLCHAIN
        echo "##vso[task.setvariable variable=PATH;]$PATH:$HOME/.cargo/bin"
      displayName: Install rust
