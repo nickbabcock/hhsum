@@ -4,6 +4,7 @@ parameters:
 steps:
  - ${{ each pair in variables }}:
    - script: echo ${{ pair.key }} ${{ pair.value }}
+     displayName: ${{ pair.key }} ${{ pair.value }}
  - bash: |
      env
      TOOLCHAIN="${{parameters['rustup_toolchain']}}"
