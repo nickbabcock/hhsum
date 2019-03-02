@@ -2,6 +2,8 @@ parameters:
   rustup_toolchain: ''
 
 steps:
+ - ${{ each pair in variables }}:
+   - script: echo ${{ pair.key }} ${{ pair.value }}
  - bash: |
      env
      TOOLCHAIN="${{parameters['rustup_toolchain']}}"
